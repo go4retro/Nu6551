@@ -1,0 +1,63 @@
+# This may not look like it, but it's a -*- makefile -*-
+#
+# Nu6551 - Atmela AVR MOS 6551 ACIA emulator
+# Copyright Jim Brain and RETRO Innovations, 2021
+#
+# These files are free designs; you can redistribute them and/or modify
+# them under the terms of the Creative Commons Attribution-ShareAlike 
+# 4.0 International License.
+#
+# You should have received a copy of the license along with this
+# work. If not, see <http://creativecommons.org/licenses/by-sa/4.0/>.
+#
+# These files are distributed in the hope that they will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# license for more details.
+
+# config: User-configurable options to simplify hardware changes and/or
+#         reduce the code/ram requirements of the code.
+#
+#
+# This file is included in the main Makefile and also parsed
+# into autoconf.h.
+#
+# This system based on sd2iec Makefile by Ingo Korb
+
+
+# MCU to compile for
+CONFIG_MCU=atmega328pb
+
+# Use the -relax parameter when linking?
+# Passing -O9 and -relax to the linker saves ~650 bytes of flash,
+# but the option is broken in certain binutils versions.
+# (known troublemakers: binutils 2.17, 2.18 seems fine)
+CONFIG_LINKER_RELAX=y
+
+# MCU frequency in Hz
+CONFIG_MCU_FREQ=16000000
+
+# Debug to serial
+CONFIG_UART_DEBUG=n
+CONFIG_UART_DEBUG_SW=n
+CONFIG_UART_DEBUG_RATE=115200
+CONFIG_UART_DEBUG_FLUSH=y
+
+# Initial Baud rate of the UART
+CONFIG_UART_BAUDRATE=57600
+CONFIG_UART_BUF_SHIFT=8
+
+# Select which hardware to compile for
+# Valid values:
+#   1 - v1 board
+CONFIG_HARDWARE_VARIANT=1
+
+# Track the stack size
+# Warning: This option increases the code size a lot.
+CONFIG_STACK_TRACKING=n
+
+CONFIG_EFUSE=0xf9
+CONFIG_HFUSE=0xdf
+CONFIG_LFUSE=0xff
+
+CONFIG_HARDWARE_NAME=Nu6551

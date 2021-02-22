@@ -107,7 +107,7 @@ end
 
 always @(*)
 begin
-   if(r_w_uc & !_ce_uc & clock_uc)
+   if(_reset_bus & r_w_uc & !_ce_uc & clock_uc)
    begin
    case (address_uc)
      0: data_uc_out = data_txd;
